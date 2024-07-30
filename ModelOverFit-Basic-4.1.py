@@ -15,14 +15,14 @@ def reward_function(params):
     max_speed_diff = 0.75 #set it carefully in range [0.01,0.3]
 
     if -10 < steering_angle < 10:
-        speed_reward = max(1e-3, 1-((speed_diff/max_speed_diff)**0.5))
+        speed_reward = max(1e-3, 1-((speed_diff/max_speed_diff)**0.4))
     elif steering_angle < -10 or steering_angle > 10:
-        if speed < 0.8:
-            speed_reward = max(1e-3, 1-((abs(0.8-speed)/0.8)**0.5))
-        if speed < 1.5:
+        if speed < 1.2:
+            speed_reward = max(1e-3, 1-((abs(0.8-speed)/0.8)**0.4))
+        if speed < 1.8:
             speed_reward = 1.0
         else:
-            speed_reward = max(1e-3, 1-((abs(1.5-speed)/0.5)**0.5))
+            speed_reward = max(1e-3, 1-((abs(1.5-speed)/0.5)**0.4))
     
     # Off track penalty
     off_track_penalty = 0
