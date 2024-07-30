@@ -11,8 +11,8 @@ def reward_function(params):
     # Incentivize going fast on straight ways and slower on curves
     steering_angle = params['steering_angle']
     speed = params['speed']
-    speed_diff = abs(2.5-speed)
-    max_speed_diff = 0.5 #set it carefully in range [0.01,0.3]
+    speed_diff = abs(2.75-speed)
+    max_speed_diff = 0.75 #set it carefully in range [0.01,0.3]
 
     if -10 < steering_angle < 10:
         speed_reward = max(1e-3, 1-((speed_diff/max_speed_diff)**0.5))
@@ -33,6 +33,6 @@ def reward_function(params):
     # Reward based on progress
     # TBD
     
-    reward = distance_reward*3.5 + speed_reward*8 - off_track_penalty
+    reward = distance_reward*3 + speed_reward*8 - off_track_penalty
     
     return float(reward)
