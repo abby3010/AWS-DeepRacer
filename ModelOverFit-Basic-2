@@ -1,0 +1,21 @@
+def reward_function(params):
+    # Read input parameters
+    track_width = params['track_width']
+    distance_from_center = params['distance_from_center']
+    # Calculate 3 markers that are at varying distances away from the center Line
+    edge = 0.5 * track_width
+    
+    # Give higher reward if the car is closer to center tine and vice versa
+    distance_reward = max(1e-3, 1 - ((distance_from_center/edge)**0.4))
+    # max - 1 and min - 0.001
+    
+    # Incentivize going fast on straight ways and slower on curves
+    steering_angle = params['steering_angle']
+    speed = params['speed']
+    speed_diff = abs(2-speed)
+    max_speed_diff = 0.2 #set it carefully in range [0.01,0.3]
+    
+    speed_reward = max(1e-3, 1 - ((speed_diff/max_speed_diff)**0.4))
+    
+    reward = distance_reward*5 + speed_reward*8
+    return float(reward)
