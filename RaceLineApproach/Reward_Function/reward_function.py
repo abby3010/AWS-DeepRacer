@@ -1,15 +1,11 @@
 import math
 
-
 class Reward:
     def __init__(self, verbose=False):
-        self.first_racingpoint_index = None
+        self.first_racingpoint_index = 0
         self.verbose = verbose
 
     def reward_function(self, params):
-
-        # Import package (needed for heading)
-        import math
 
         ################## HELPER FUNCTIONS ###################
 
@@ -339,7 +335,7 @@ class Reward:
         return float(reward)
 
 
-reward_object = Reward() # add parameter verbose=True to get noisy output for testing
+reward_object = Reward(verbose=True) # add parameter verbose=True to get noisy output for testing
 
 
 def reward_function(params):
